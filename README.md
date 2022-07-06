@@ -12,7 +12,7 @@ It will look for an environment variable named `API_KEY` before running the test
 
 **Usage**
 
-Create a CurrentWeather object using an API key.
+Create a **CurrentWeather** instance using an API key.
 ```python
 current_weather = CurrentWeather(key="YOUR API KEY")
 ```
@@ -42,4 +42,21 @@ Further more you can specify optional arguments like unit and language.
 ```python
 # all supported units and languages can be found in the corresponding classes
 current_weather.get_weather_coords(latitude=90, longitude=180, unit=Unit.STANDARD, language=Language.ENGLISH)
+```
+
+All methods in **CurrentWeather** return a **Current** instance.
+```python
+current = current_weather.get_weather_coords(latitude=45, longitude=90)
+
+# check if it is raining currently
+current.weather.rain.is_raining()
+
+# check if there are any clouds currently
+current.weather.clouds.has_clouds()
+
+# get the current temperature
+current.weather.temperature.degree
+
+# convert kelvin to celsius
+current.weather.temperature.convert_to_celsius()
 ```
